@@ -74,7 +74,7 @@ async function displayTokens(chn, chnSymbol, nativeAdd, nativeDecimals,dbRef, db
         await Moralis.Web3API.token.getTokenPrice({chain:chn, address: e.get("token_address")})
     ));}else{
     nativePrice = {usdPrice: 1};//set avax price
-    prices = [{usdPrice: 1}]; //set avalanche tokens price
+    prices = [{usdPrice: 1}]; //set avalanche chain token prices
     }
     
 
