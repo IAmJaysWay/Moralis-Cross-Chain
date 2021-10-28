@@ -65,11 +65,17 @@ async function displayTokens(chn, chnSymbol, nativeAdd, nativeDecimals,dbRef, db
     const queryNative = new Moralis.Query(dbRefNative)
     queryNative.equalTo("address", Moralis.User.current().get("ethAddress"))
     const resultsNative = await queryNative.first();
+    let nativePrice = {};
+    let prices = [];
 
-    let nativePrice = await Moralis.Web3API.token.getTokenPrice({chain:chn, address: nativeAdd})
-    let prices = await Promise.all(results.map(async (e) =>
+    if(chn != "avalanche"){
+    nativePrice = await Moralis.Web3API.token.getTokenPrice({chain:chn, address: nativeAdd})
+    prices = await Promise.all(results.map(async (e) =>
         await Moralis.Web3API.token.getTokenPrice({chain:chn, address: e.get("token_address")})
-    ));
+    ));}else{
+    nativePrice = {usdPrice: 1};//set avax price
+    prices = [{usdPrice: 1}]; //set avalanche tokens price
+    }
     
 
     let nativeBal = resultsNative.get("balance") / ("1e" + nativeDecimals);
