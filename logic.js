@@ -1,5 +1,5 @@
-const serverUrl = "https://prm3y0cmp34g.usemoralis.com:2053/server";
-const appId = "YbfY8xUZyrqkHLjbcbHfDS7yjB29HXxRsA5pBDQE";
+const serverUrl = "YOUR SERVER URL HERE";
+const appId = "YOUR APP ID HERE";
 Moralis.start({ serverUrl, appId });
 var web3;
 checkWeb3();
